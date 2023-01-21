@@ -12,7 +12,7 @@ using complex_array = std::valarray<complex>;
 using zmath::pi;
 
 /**
- * @brief 对多项式计算其DFT
+ * @brief 
  * 
  * @param coef 多项式的系数. 例如, 如果多项式是 1 - 2x + 3x^2, 则 coef 是 { 1, -2, 3 } 
  */
