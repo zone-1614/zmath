@@ -1,3 +1,4 @@
+// 不知道那些自动化测试是啥, 自己写点测试的代码
 #include <iostream>
 #include <zmath.h>
 
@@ -132,7 +133,25 @@ void test_polynomial() {
     poly_z2.print();
 }
 
+void test_linalg() {
+    // 构造并打印
+    std::vector<double> vv{ 1, 2, 3 };
+    zmath::Vector v(vv);
+    v.print();
+    
+    // 转置
+    auto vt = v.transpose();
+    vt.print();
+
+    auto va = vt.transpose() + v;
+    va.print();
+
+    auto vb = va - 2.5 * v;
+    vb.print();
+}
+
 int main() {
     // test_fft();
-    test_polynomial();
+    // test_polynomial();
+    test_linalg();
 }

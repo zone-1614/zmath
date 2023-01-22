@@ -6,7 +6,7 @@ set(CMAKE_CXX_EXTENSIONS ON)
 
 project(zmath LANGUAGES CXX)
 
-file(GLOB srcs CONFIGURE_DEPENDS src/*.cpp include/*.h)
+file(GLOB srcs CONFIGURE_DEPENDS test/*.cpp include/*.h)
 
 add_executable(test ${srcs})
 
