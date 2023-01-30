@@ -1,7 +1,7 @@
 #pragma once
 #include <complex>
 #include <valarray>
-#include <zmath/constant.h>
+#include <zmath/utils/constant.h>
 
 // fft 用于计算多项式乘积
 

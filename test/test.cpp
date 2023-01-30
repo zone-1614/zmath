@@ -1,51 +1,53 @@
-// 不知道那些自动化测试是啥, 自己写点测试的代码
+// 不知道那些自动化测试是啥, 自己写点测试的代�?
 #include <iostream>
 #include <zmath.h>
 
-zmath::complex normalize(zmath::complex c) {
-    if (abs(c.real()) < zmath::epsilon) {
+using namespace zmath;
+
+complex normalize(complex c) {
+    if (abs(c.real()) < epsilon) {
         c.real(0);
     }
-    if (abs(c.imag() < zmath::epsilon)) {
+    if (abs(c.imag() < epsilon)) {
         c.imag(0);
     }
     return c;
 }
 
 void test_fft() {
-    std::cout << zmath::ninf << std::endl;
-    zmath::complex c[] = { 3, 2, 1, 0 };
-    zmath::complex_array coef(c, 4);
-    zmath::fft(coef);
+    std::cout << ninf << std::endl;
+    complex c[] = { 3, 2, 1, 0 };
+    complex_array coef(c, 4);
+    fft(coef);
     for (int i = 0; i < 4; i++) {
         std::cout << normalize(coef[i]) << std::endl;
     }
-    zmath::ifft(coef);
+    ifft(coef);
     for (int i = 0; i < 4; i++) {
         std::cout << normalize(coef[i]) << std::endl;
     }
 }
 
 void test_polynomial() {
-    // 什么都没有的多项式, 默认为 0
+    // 什么都没有的多项式, 默认�? 0
     std::vector<double> coef0 { };
-    zmath::Polynomial poly0(coef0);
+    Polynomial poly0(coef0);
     poly0.print();
 
-    // 默认构造
+    // 默认构�?
     std::vector<double> coef1;
-    zmath::Polynomial poly1(coef1);
+    Polynomial poly1(coef1);
     poly1.print();
 
     std::vector<double> coef2{ 0, 0, 0, 1, 2, 3, 0, 0, 1 };
-    zmath::Polynomial poly2(coef2);
+    Polynomial poly2(coef2);
     poly2.print();
 
     // 测试 print
     std::cout << std::endl << "测试 print " << std::endl;
     std::vector<double> coef { -3.5, 0, -5.3, 2.2, -6.5, -9.999 }; 
     // -3.500000 x^5 - 5.300000 x^3 + 2.200000 x^2 - 6.500000 x - 9.999000
-    zmath::Polynomial poly(coef);
+    Polynomial poly(coef);
     poly.print();
 
     // 求导
@@ -54,7 +56,7 @@ void test_polynomial() {
     deriv.print();
 
     // 首一
-    std::cout << std::endl << "测试首一多项式 monic " << std::endl;
+    std::cout << std::endl << "测试首一多项�? monic " << std::endl;
     auto monic = deriv.monic();
     monic.print();
     // 测试设置系数
@@ -69,7 +71,7 @@ void test_polynomial() {
     // 测试 operator()
     std::cout << std::endl << "测试 operator()" << std::endl;
     std::vector<double> coef3 { 1, -1, 2 }; 
-    zmath::Polynomial poly3(coef3);
+    Polynomial poly3(coef3);
     poly3.print();
     std::cout << poly3(0) << " " << poly3(1) << " " << poly3(2) << std::endl;
     std::cout << poly3(-1) << " " << poly3(3) << " " << poly3(0.5) << std::endl;
@@ -77,10 +79,10 @@ void test_polynomial() {
     // 测试 operator+ operator-
     std::cout << std::endl << "测试 operator+ operator-" << std::endl;
     std::vector<double> coef_add1{ 1, 2, 3, 0, -6, 1 };
-    zmath::Polynomial poly_add1(coef_add1);
+    Polynomial poly_add1(coef_add1);
     poly_add1.print();
     std::vector<double> coef_add2{ -1, -2, 3, 4, 0, 1 };
-    zmath::Polynomial poly_add2(coef_add2);
+    Polynomial poly_add2(coef_add2);
     poly_add2.print();
 
     auto poly_add = poly_add1 + poly_add2;
@@ -98,10 +100,10 @@ void test_polynomial() {
     // 测试多项式乘法
     std::cout << std::endl << "测试多项式乘法" << std::endl;
     std::vector<double> coef_mul1{ 2, -4, 0.5, -1 };
-    zmath::Polynomial poly_mul1(coef_mul1);
+    Polynomial poly_mul1(coef_mul1);
     poly_mul1.print();
     std::vector<double> coef_mul2{ -1, 0, 3 };
-    zmath::Polynomial poly_mul2(coef_mul2);
+    Polynomial poly_mul2(coef_mul2);
     poly_mul2.print();
     auto poly_mul = poly_mul1 * poly_mul2;
     poly_mul.print();
@@ -118,10 +120,10 @@ void test_polynomial() {
     // 测试 += -= *= ^=
     std::cout << std::endl << "测试 += -= *= ^=" << std::endl;
     std::vector<double> coef_z1{ 2, -4, 0.5, -1 };
-    zmath::Polynomial poly_z1(coef_z1);
+    Polynomial poly_z1(coef_z1);
     poly_z1.print();
     std::vector<double> coef_z2{ -1, 0, 3 };
-    zmath::Polynomial poly_z2(coef_z2);
+    Polynomial poly_z2(coef_z2);
     poly_z2.print();
     poly_z1 += poly_z2;
     poly_z1.print();
@@ -136,7 +138,7 @@ void test_polynomial() {
 void test_linalg() {
     // 构造并打印
     std::vector<double> vv{ 1, 2, 3 };
-    zmath::Vector v(vv);
+    Vector v(vv);
     v.print();
     
     // 转置
@@ -150,8 +152,18 @@ void test_linalg() {
     vb.print();
 }
 
+void test_vec2() {
+    Vec2 v1(2.0, 2.0);
+    Vec2 v2(1.0, -1.0);
+    v1.print();
+    fmt::print("v1 v2 angle {:.3f}\nv1 norm {:.3f}\nv1 v2 distance {:.3f}\n", v1.angle(v2), v1.norm(), v1.distance(v2));
+    auto v = v1.normalize();
+    v.print();
+}
+
 int main() {
     // test_fft();
     // test_polynomial();
-    test_linalg();
+    // test_linalg();
+    test_vec2();
 }

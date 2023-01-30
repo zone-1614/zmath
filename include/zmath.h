@@ -1,6 +1,5 @@
 #pragma once
 
-#include "zmath/constant.h"
-#include "zmath/fft.h"
-#include "zmath/polynomial.h"
-#include "zmath/linalg.h"
+#include <zmath/Core.h>
+#include <zmath/Polynomial.h>
+#include <zmath/Linalg.h>
