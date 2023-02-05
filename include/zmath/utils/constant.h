@@ -26,4 +26,12 @@ bool eq(double a, double b) {
     return std::abs(a - b) < epsilon;
 }
 
+constexpr double deg2rad(double deg) {
+    return deg * pi / 180;
+}
+
+constexpr double rad2deg(double rad) {
+    return 180 * rad / pi;
+}
+
 }
